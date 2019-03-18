@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.myBlog.dao.LogMapper">
+  <resultMap id="BaseResultMap" type="com.blog.myBlog.entity.Log">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="action" jdbcType="VARCHAR" property="action" />
+    <result column="data" jdbcType="VARCHAR" property="data" />
+    <result column="author_id" jdbcType="INTEGER" property="authorId" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="created" jdbcType="INTEGER" property="created" />
+  </resultMap>
+  <insert id="insert" parameterType="com.blog.myBlog.entity.Log">
+    insert into t_logs (id, action, data, 
+      author_id, ip, created
+      )
+    values (#{id,jdbcType=INTEGER}, #{action,jdbcType=VARCHAR}, #{data,jdbcType=VARCHAR}, 
+      #{authorId,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{created,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blog.myBlog.entity.Log">
+    insert into t_logs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="action != null">
+        action,
+      </if>
+      <if test="data != null">
+        data,
+      </if>
+      <if test="authorId != null">
+        author_id,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="action != null">
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null">
+        #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="authorId != null">
+        #{authorId,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

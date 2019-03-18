@@ -1,0 +1,8 @@
+server:
+  port: 8089
+ 
+spring:
+  profiles:
+    active: jdbc
+
+      

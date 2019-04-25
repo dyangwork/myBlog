@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.myBlog.dao.BlogFileMapper">
+  <resultMap id="BaseResultMap" type="com.blog.myBlog.entity.BlogFile">
+    <result column="file_id" jdbcType="VARCHAR" property="fileId" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="origin_name" jdbcType="VARCHAR" property="originName" />
+    <result column="file_path" jdbcType="VARCHAR" property="filePath" />
+    <result column="file_suffix" jdbcType="CHAR" property="fileSuffix" />
+    <result column="file_size" jdbcType="VARCHAR" property="fileSize" />
+    <result column="file_md5" jdbcType="VARCHAR" property="fileMd5" />
+    <result column="uploader" jdbcType="VARCHAR" property="uploader" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.blog.myBlog.entity.BlogFile">
+    insert into blog_file (file_id, file_name, origin_name, 
+      file_path, file_suffix, file_size, 
+      file_md5, uploader, upload_time
+      )
+    values (#{fileId,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, #{originName,jdbcType=VARCHAR}, 
+      #{filePath,jdbcType=VARCHAR}, #{fileSuffix,jdbcType=CHAR}, #{fileSize,jdbcType=VARCHAR}, 
+      #{fileMd5,jdbcType=VARCHAR}, #{uploader,jdbcType=VARCHAR}, #{uploadTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blog.myBlog.entity.BlogFile">
+    insert into blog_file
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fileId != null">
+        file_id,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+      <if test="originName != null">
+        origin_name,
+      </if>
+      <if test="filePath != null">
+        file_path,
+      </if>
+      <if test="fileSuffix != null">
+        file_suffix,
+      </if>
+      <if test="fileSize != null">
+        file_size,
+      </if>
+      <if test="fileMd5 != null">
+        file_md5,
+      </if>
+      <if test="uploader != null">
+        uploader,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fileId != null">
+        #{fileId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="originName != null">
+        #{originName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSuffix != null">
+        #{fileSuffix,jdbcType=CHAR},
+      </if>
+      <if test="fileSize != null">
+        #{fileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="fileMd5 != null">
+        #{fileMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="uploader != null">
+        #{uploader,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

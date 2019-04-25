@@ -1,11 +1,9 @@
 package com.blog.myBlog.entity;
 
-public class Meta {
-    private Integer mid;
+public class BlogMeta {
+    private String cid;
 
     private String name;
-
-    private String slug;
 
     private String type;
 
@@ -13,14 +11,14 @@ public class Meta {
 
     private Integer sort;
 
-    private Integer parent;
+    private String parentId;
 
-    public Integer getMid() {
-        return mid;
+    public String getCid() {
+        return cid;
     }
 
-    public void setMid(Integer mid) {
-        this.mid = mid;
+    public void setCid(String cid) {
+        this.cid = cid == null ? null : cid.trim();
     }
 
     public String getName() {
@@ -29,14 +27,6 @@ public class Meta {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug == null ? null : slug.trim();
     }
 
     public String getType() {
@@ -63,11 +53,11 @@ public class Meta {
         this.sort = sort;
     }
 
-    public Integer getParent() {
-        return parent;
+    public String getParentId() {
+        return parentId;
     }
 
-    public void setParent(Integer parent) {
-        this.parent = parent;
+    public void setParentId(String parentId) {
+        this.parentId = parentId == null ? null : parentId.trim();
     }
 }

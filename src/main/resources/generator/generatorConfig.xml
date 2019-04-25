@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
 	<classPathEntry
-		location="C:/Users/dongyang/.m2/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar" />
+		location="C:/Users/lenovo/.m2/repository/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar" />
 	<context id="my" targetRuntime="MyBatis3">
 		<commentGenerator>
 			<property name="suppressDate" value="false" />
@@ -13,22 +13,22 @@
 		</commentGenerator>
 
 		<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-			connectionURL="jdbc:mysql://192.168.199.203:3306/myBlog"
+			connectionURL="jdbc:mysql://192.168.131.153:3306/blog_database"
 			userId="root" password="Aa123456" />
 
 		<javaModelGenerator targetPackage="com.blog.myBlog.entity"
-			targetProject="D:/programFiles/develop_tools/eclipse/workspace1/myBlog/src/main/java">
+			targetProject="D:/tools/gitHubWorkSpace/myBlog/src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
 		<sqlMapGenerator targetPackage="mapper"
-			targetProject="D:/programFiles/develop_tools/eclipse/workspace1/myBlog/src/main/resources">
+			targetProject="D:/tools/gitHubWorkSpace/myBlog/src/main/resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<javaClientGenerator targetPackage="com.blog.myBlog.dao"
-			targetProject="D:/programFiles/develop_tools/eclipse/workspace1/myBlog/src/main/java"
+			targetProject="D:/tools/gitHubWorkSpace/myBlog/src/main/java"
 			type="XMLMAPPER">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
@@ -37,40 +37,40 @@
 			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
 			selectByExampleQueryId="false"/> -->
 
-		<table tableName="t_attach" domainObjectName="Attach"
+		<table tableName="blog_comment" domainObjectName="BlogComment"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="t_comments" domainObjectName="Comment"
+		<table tableName="blog_article" domainObjectName="BlogArticle"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="t_contents" domainObjectName="Content"
+		<table tableName="blog_log" domainObjectName="BlogLog"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="t_logs" domainObjectName="Log"
+		<table tableName="blog_metas" domainObjectName="BlogMeta"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="t_metas" domainObjectName="Meta"
+		<table tableName="blog_file" domainObjectName="BlogFile"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="t_options" domainObjectName="Option"
+		<table tableName="blog_user" domainObjectName="BlogUser"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="t_users" domainObjectName="User"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false">
+		<table tableName="blog_place_on_file" domainObjectName="PlaceOnFile"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
 		</table>
 
 	</context>

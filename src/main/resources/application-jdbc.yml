@@ -1,0 +1,11 @@
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.blog.myBlog.dao
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    #数据库驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: dbc:mysql://192.168.131.153:3306/blog_database?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true
+    username: root
+    password: Aa123456

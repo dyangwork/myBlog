@@ -1,8 +1,24 @@
 server:
-  port: 8089
+  port: 8084
  
 spring:
   profiles:
     active: jdbc
+#自动编译工具
+  devtools:
+    restart:
+      #可以自动编译
+      enabled: true
+      additional-paths: src/main/java
+
+# thymeleaf mode engine
+  thymeleaf:
+    prefix: classpath:/templates/
+    check-template-location: true
+    mode: HTML
+    encoding: UTF-8
+    suffix: .html
+    cache: false
+
 
       

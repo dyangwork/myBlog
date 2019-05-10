@@ -29,7 +29,7 @@ public class CookieUtils {
      * @param request
      * @param user
      */
-    public static void setUser(HttpServletRequest request,BlogUser user){
+    public static void setCookieUser(HttpServletRequest request,BlogUser user){
         HttpSession session = request.getSession(ConstantUtils.TRUE);
         session.setAttribute(ConstantUtils.LOGIN_SESSION,user);
     }

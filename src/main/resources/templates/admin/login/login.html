@@ -5,27 +5,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-	<title>个人博客</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="UTF-8" />
-	<script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
-
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
-	</script>
-
-	<!-- css files -->
-	<link rel="stylesheet" th:href="@{css/admin/login/login.css}" type="text/css" media="all" />
-	<!-- Style-CSS -->
-	<link rel="stylesheet" th:href="@{common/font-awesome-4.7.0/css/font-awesome.min.css}">
-
-</head>
+<div th:replace="common/header::headerFragment('个人博客')" />
+<!-- css files -->
+<link rel="stylesheet" th:href="@{css/admin/login/login.css}" type="text/css" media="all" />
 
 <body>
 	<!-- title -->
@@ -35,17 +17,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //title -->
 	<!-- content -->
 	<div class="sub-main-w3">
-		<form action="#" method="post">
+		<form  id="loginForm" >
 			<div class="form-div-login">
 				<label class="login-label">
 					<i class="fa fa-user fa-2x icon"></i>
-					<input class="login-input" placeholder="请输入账号" name="Name" type="text" required="">
+					<input class="login-input" placeholder="请输入账号"  name="userName" type="text" required oninvalid="setCustomValidity('请输入账号')" oninput="setCustomValidity('')">
 				</label>
 			</div>
 			<div class="form-div-login">
 				<label class="login-label">
 					<i class="fa fa-unlock-alt fa-2x icon"></i>
-					<input class="login-input" placeholder="请输入密码" name="Password" type="password" required="">
+					<input class="login-input" placeholder="请输入密码" name="password" type="password" required minlength="6" maxlength="18">
 				</label>
 			</div>
 			<!-- checkbox -->
@@ -56,13 +38,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<div class="checkout-w3l">
 							<div class="demo5">
 								<div class="switch demo3">
-									<input type="checkbox">
+									<input type="checkbox" name="auto">
 									<label>
 										<i></i>
 									</label>
 								</div>
 							</div>
-							<a class="login-record" href="#">记住账号</a>
+							<a class="login-record" href="javaScript:void(0);">30天免登录</a>
 						</div>
 						<!-- //checkout -->
 					</li>
@@ -72,11 +54,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</ul>
 			</div>
 			<!-- //switch -->
-			<input type="submit" value="登 录">
+			<input type="button" id="loginBtn" value="登 录">
 		</form>
 	</div>
-
-
+	<script type="text/javascript" th:src="@{js/plugins/md5/md5.js}"></script>
+	<script type="text/javascript" th:src="@{js/admin/login/login.js}"></script>
+	<!--<script type="text/javascript" th:src="@{js/admin/login/login.js}"/> 这种引用加载不进来-->
 </body>
-
 </html>

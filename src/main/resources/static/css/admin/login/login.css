@@ -354,7 +354,7 @@ h1 span {
     background: #fff;
 }
 
-.sub-main-w3 input[type="submit"] {
+.sub-main-w3 input[type="button"] {
     color: #fff;
     background: #03A9F4;
     border: none;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.blog.myBlog.dao.BlogLogMapper">
-  <resultMap id="BaseResultMap" type="com.blog.myBlog.entity.BlogLog">
+<mapper namespace="com.blog.myblog.dao.BlogLogMapper">
+  <resultMap id="BaseResultMap" type="com.blog.myblog.entity.BlogLog">
     <result column="log_id" jdbcType="VARCHAR" property="logId" />
     <result column="ip" jdbcType="VARCHAR" property="ip" />
     <result column="action" jdbcType="VARCHAR" property="action" />
@@ -9,7 +9,7 @@
     <result column="operater" jdbcType="VARCHAR" property="operater" />
     <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
   </resultMap>
-  <insert id="insert" parameterType="com.blog.myBlog.entity.BlogLog">
+  <insert id="insert" parameterType="com.blog.myblog.entity.BlogLog">
     insert into blog_log (log_id, ip, action, 
       description, operater, operate_time
       )
@@ -17,7 +17,7 @@
       #{description,jdbcType=VARCHAR}, #{operater,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.blog.myBlog.entity.BlogLog">
+  <insert id="insertSelective" parameterType="com.blog.myblog.entity.BlogLog">
     insert into blog_log
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="logId != null">

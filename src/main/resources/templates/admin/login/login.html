@@ -1,13 +1,8 @@
-<!--Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="common/header::headerFragment('个人博客')" />
 <!-- css files -->
-<link rel="stylesheet" th:href="@{css/admin/login/login.css}" type="text/css" media="all" />
+<link rel="stylesheet" th:href="@{/css/admin/login/login.css}" type="text/css" media="all" />
 
 <body>
 	<!-- title -->
@@ -57,8 +52,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<input type="button" id="loginBtn" value="登 录">
 		</form>
 	</div>
-	<script type="text/javascript" th:src="@{js/plugins/md5/md5.js}"></script>
-	<script type="text/javascript" th:src="@{js/admin/login/login.js}"></script>
+	<script type="text/javascript" th:src="@{/js/plugins/md5/md5.js}"></script>
+	<script type="text/javascript" th:src="@{/js/admin/login/login.js}"></script>
 	<!--<script type="text/javascript" th:src="@{js/admin/login/login.js}"/> 这种引用加载不进来-->
 </body>
 </html>

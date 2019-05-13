@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.blog.myBlog.dao.PlaceOnFileMapper">
-  <resultMap id="BaseResultMap" type="com.blog.myBlog.entity.PlaceOnFile">
+<mapper namespace="com.blog.myblog.dao.PlaceOnFileMapper">
+  <resultMap id="BaseResultMap" type="com.blog.myblog.entity.PlaceOnFile">
     <result column="fid" jdbcType="VARCHAR" property="fid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
-  <insert id="insert" parameterType="com.blog.myBlog.entity.PlaceOnFile">
+  <insert id="insert" parameterType="com.blog.myblog.entity.PlaceOnFile">
     insert into blog_place_on_file (fid, name)
     values (#{fid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.blog.myBlog.entity.PlaceOnFile">
+  <insert id="insertSelective" parameterType="com.blog.myblog.entity.PlaceOnFile">
     insert into blog_place_on_file
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="fid != null">

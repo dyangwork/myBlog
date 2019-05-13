@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.blog.myBlog.dao.BlogCommentMapper">
-  <resultMap id="BaseResultMap" type="com.blog.myBlog.entity.BlogComment">
+<mapper namespace="com.blog.myblog.dao.BlogCommentMapper">
+  <resultMap id="BaseResultMap" type="com.blog.myblog.entity.BlogComment">
     <result column="comment_id" jdbcType="VARCHAR" property="commentId" />
     <result column="article_id" jdbcType="VARCHAR" property="articleId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -12,13 +12,13 @@
     <result column="sort" jdbcType="INTEGER" property="sort" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.blog.myBlog.entity.BlogComment">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.blog.myblog.entity.BlogComment">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
   <sql id="Blob_Column_List">
     content
   </sql>
-  <insert id="insert" parameterType="com.blog.myBlog.entity.BlogComment">
+  <insert id="insert" parameterType="com.blog.myblog.entity.BlogComment">
     insert into blog_comment (comment_id, article_id, name, 
       email, type, author_id, 
       parent_comment_id, sort, create_time, 
@@ -28,7 +28,7 @@
       #{parentCommentId,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.blog.myBlog.entity.BlogComment">
+  <insert id="insertSelective" parameterType="com.blog.myblog.entity.BlogComment">
     insert into blog_comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="commentId != null">

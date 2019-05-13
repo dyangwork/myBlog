@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.blog.myBlog.dao.BlogUserMapper">
-  <resultMap id="BaseResultMap" type="com.blog.myBlog.entity.BlogUser">
+<mapper namespace="com.blog.myblog.dao.BlogUserMapper">
+  <resultMap id="BaseResultMap" type="com.blog.myblog.entity.BlogUser">
     <result column="user_uuid" jdbcType="VARCHAR" property="userUuid" />
     <result column="user_account" jdbcType="VARCHAR" property="userAccount" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -17,7 +17,7 @@
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
   </resultMap>
-  <insert id="insert" parameterType="com.blog.myBlog.entity.BlogUser">
+  <insert id="insert" parameterType="com.blog.myblog.entity.BlogUser">
     insert into blog_user (user_uuid, user_account, password, 
       user_name, real_name, phone, 
       email, sex, enable, create_time, 
@@ -29,7 +29,7 @@
       #{updateTime,jdbcType=TIMESTAMP}, #{updatePwdTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
       #{updateUser,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.blog.myBlog.entity.BlogUser">
+  <insert id="insertSelective" parameterType="com.blog.myblog.entity.BlogUser">
     insert into blog_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userUuid != null">
@@ -121,12 +121,12 @@
     </trim>
   </insert>
 
-  <select id="getUserByUserNameAndPassword" parameterType="java.util.Map" resultType="com.blog.myBlog.entity.BlogUser">
+  <select id="getUserByUserNameAndPassword" parameterType="java.util.Map" resultType="com.blog.myblog.entity.BlogUser">
       select user_uuid,user_account,user_name,real_name,email,phone,sex from blog_user
       where  user_account = #{userName} and  password = #{password} and enable = 'Y'
   </select>
 
-  <select id="getUserById" parameterType="java.util.List" resultType="com.blog.myBlog.entity.BlogUser">
+  <select id="getUserById" parameterType="java.util.List" resultType="com.blog.myblog.entity.BlogUser">
       select user_uuid,user_account,user_name,real_name,email,phone,sex from blog_user
       <where>
         <foreach collection="ids" index="1" item="id" separator="or">
@@ -166,7 +166,7 @@
       </if>
   </sql>
 
-  <update id="updateUserById" parameterType="com.blog.myBlog.entity.BlogUser">
+  <update id="updateUserById" parameterType="com.blog.myblog.entity.BlogUser">
       update blog_user
       <set>
         <include refid="updateParamsSql"/>
@@ -174,7 +174,7 @@
       where user_uuid = #{userUuid} and enable='Y'
   </update>
 
-  <update id="updateUserByUserAccount" parameterType="com.blog.myBlog.entity.BlogUser">
+  <update id="updateUserByUserAccount" parameterType="com.blog.myblog.entity.BlogUser">
     update blog_user set
     <set>
       <include refid="updateParamsSql" />

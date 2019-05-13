@@ -16,7 +16,7 @@
 			connectionURL="jdbc:mysql://192.168.131.153:3306/blog_database"
 			userId="root" password="Aa123456" />
 
-		<javaModelGenerator targetPackage="com.blog.myBlog.entity"
+		<javaModelGenerator targetPackage="com.blog.myblog.entity"
 			targetProject="D:/tools/gitHubWorkSpace/myBlog/src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
@@ -27,7 +27,7 @@
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
-		<javaClientGenerator targetPackage="com.blog.myBlog.dao"
+		<javaClientGenerator targetPackage="com.blog.myblog.dao"
 			targetProject="D:/tools/gitHubWorkSpace/myBlog/src/main/java"
 			type="XMLMAPPER">
 			<property name="enableSubPackages" value="true" />

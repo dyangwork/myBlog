@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.blog.myBlog.dao.BlogFileMapper">
-  <resultMap id="BaseResultMap" type="com.blog.myBlog.entity.BlogFile">
+<mapper namespace="com.blog.myblog.dao.BlogFileMapper">
+  <resultMap id="BaseResultMap" type="com.blog.myblog.entity.BlogFile">
     <result column="file_id" jdbcType="VARCHAR" property="fileId" />
     <result column="file_name" jdbcType="VARCHAR" property="fileName" />
     <result column="origin_name" jdbcType="VARCHAR" property="originName" />
@@ -12,7 +12,7 @@
     <result column="uploader" jdbcType="VARCHAR" property="uploader" />
     <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
   </resultMap>
-  <insert id="insert" parameterType="com.blog.myBlog.entity.BlogFile">
+  <insert id="insert" parameterType="com.blog.myblog.entity.BlogFile">
     insert into blog_file (file_id, file_name, origin_name, 
       file_path, file_suffix, file_size, 
       file_md5, uploader, upload_time
@@ -22,7 +22,7 @@
       #{fileMd5,jdbcType=VARCHAR}, #{uploader,jdbcType=VARCHAR}, #{uploadTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.blog.myBlog.entity.BlogFile">
+  <insert id="insertSelective" parameterType="com.blog.myblog.entity.BlogFile">
     insert into blog_file
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="fileId != null">

@@ -10,6 +10,9 @@ spring:
       #可以自动编译
       enabled: true
       additional-paths: src/main/java
+  #设置静态资源路径
+  #mvc:
+    #static-path-pattern: /static/**
 
 # thymeleaf mode engine
   thymeleaf:

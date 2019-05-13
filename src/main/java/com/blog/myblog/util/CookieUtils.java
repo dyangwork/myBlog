@@ -32,7 +32,7 @@ public class CookieUtils {
      * @param request
      * @param user
      */
-    public static void setCookieUser(HttpServletRequest request,BlogUser user){
+    public static void setSessionUser(HttpServletRequest request,BlogUser user){
         HttpSession session = request.getSession(ConstantUtils.TRUE);
         session.setAttribute(ConstantUtils.LOGIN_SESSION,user);
     }
@@ -50,6 +50,20 @@ public class CookieUtils {
         response.addCookie(cookie);
     }
 
+    /**
+     * @author dongyang
+     * @description //TODO
+     * @date 14:36 2019/5/13
+     * @param [response, user]
+     * @return void
+     **/
+    public static void setAutoCookie(HttpServletResponse response,BlogUser user){
 
+        Cookie cookie = new Cookie(ConstantUtils.AUTO_LOGIN_COOKIE,"");
+        cookie.setPath("/");
+        cookie.setSecure(false);
+        cookie.setMaxAge(60*60*24);
+        response.addCookie(cookie);
+    }
 
 }

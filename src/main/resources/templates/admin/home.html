@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>主页</title>
-</head>
+<div th:replace="common/header::headerFragment('博客后台管理')"></div>
 <body>
+    <div th:replace="common/home_body::home-body"></div>
     <h1>this is home</h1>
-    <h1 th:text="${user}"></h1>
 </body>
 </html>

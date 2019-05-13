@@ -122,7 +122,7 @@
   </insert>
 
   <select id="getUserByUserNameAndPassword" parameterType="java.util.Map" resultType="com.blog.myblog.entity.BlogUser">
-      select user_uuid,user_account,user_name,real_name,email,phone,sex from blog_user
+      select user_uuid as userUuid,user_account as userAccount,user_name as userName,real_name as realName,email,phone,sex from blog_user
       where  user_account = #{userName} and  password = #{password} and enable = 'Y'
   </select>
 

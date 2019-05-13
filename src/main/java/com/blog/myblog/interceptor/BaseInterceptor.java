@@ -17,14 +17,16 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class BaseInterceptor implements HandlerInterceptor {
 
+    private static String LOGIN_URL = "/admin/login";
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String path = request.getRequestURI();
+      /*  String path = request.getRequestURI();
         BlogUser user = CookieUtils.getLoginUser(request);
-        if(user ==null && !"/admin/login".equals(path)){
-            response.sendRedirect("/admin/login");
+        if(user ==null && !LOGIN_URL.equals(path)){
+            response.sendRedirect(LOGIN_URL);
             return false;
-        }
+        }*/
         return true;
     }
 

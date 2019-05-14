@@ -1,8 +1,19 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="common/header::headerFragment('个人博客')" />
-<!-- css files -->
-<link rel="stylesheet" th:href="@{/css/admin/login/login.css}" type="text/css" media="all" />
+<head>
+	<meta charset="UTF-8">
+	<title>个人博客</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+	<meta name="renderer" content="webkit"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<meta http-equiv="Cache-Control" content="no-transform"/>
+	<meta http-equiv="Cache-Control" content="no-siteapp"/>
+	<!-- Style-CSS -->
+	<link rel="stylesheet" th:href="@{/common/font-awesome-4.7.0/css/font-awesome.min.css}" />
+	<link rel="stylesheet" th:href="@{/css/admin/login/login.css}" type="text/css" />
+	<!-- Common js-->
+	<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+</head>
 
 <body>
 	<!-- title -->

@@ -3,6 +3,7 @@ package com.blog.myblog.controller;
 import com.blog.myblog.common.ProcessResult;
 import com.blog.myblog.entity.BlogUser;
 import com.blog.myblog.service.UserService;
+import com.blog.myblog.util.ConstantUtils;
 import com.blog.myblog.util.CookieUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ import java.util.Map;
  * @date 14:43 2019/5/13
  **/
 @Controller
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 @RequestMapping("/admin")
 public class LoginController {
 
@@ -65,6 +66,24 @@ public class LoginController {
 
 		}
 		return ProcessResult.success("校验成功");
+	}
+
+	/**
+	 * @author dongyang
+	 * @description 登出操作
+	 * @date 16:10 2019/5/14
+	 * @param request
+	 * @param response
+	 * @return string
+	 **/
+	@RequestMapping("/logout")
+	public String loginOut(HttpServletRequest request, HttpServletResponse response){
+		//移除session
+		request.getSession().removeAttribute(ConstantUtils.LOGIN_SESSION);
+		//移除cookie
+		CookieUtils.clearCookie(response);
+		return "admin/login/login";
+
 	}
 
 	@RequestMapping("/home")

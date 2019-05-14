@@ -52,9 +52,9 @@ public class CookieUtils {
 
     /**
      * @author dongyang
-     * @description //TODO
+     * @description 设置自动登录的cookie
      * @date 14:36 2019/5/13
-     * @param [response, user]
+     * @param response, user
      * @return void
      **/
     public static void setAutoCookie(HttpServletResponse response,BlogUser user){
@@ -63,6 +63,18 @@ public class CookieUtils {
         cookie.setPath("/");
         cookie.setSecure(false);
         cookie.setMaxAge(60*60*24);
+        response.addCookie(cookie);
+    }
+
+    /**
+     * @description 清除cookie
+     * @author dongyang
+     * @date 14:36 2019/5/14
+     * @param response
+     */
+    public static void clearCookie(HttpServletResponse response){
+        Cookie cookie = new Cookie(ConstantUtils.LOGIN_COOKIE,"");
+        cookie.setMaxAge(0);
         response.addCookie(cookie);
     }
 

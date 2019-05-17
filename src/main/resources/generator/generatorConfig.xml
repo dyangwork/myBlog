@@ -37,17 +37,17 @@
 			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
 			selectByExampleQueryId="false"/> -->
 
-		<table tableName="blog_comment" domainObjectName="BlogComment"
+		<!--<table tableName="blog_comment" domainObjectName="BlogComment"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
-		</table>
+		</table>-->
 		<table tableName="blog_article" domainObjectName="BlogArticle"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table tableName="blog_log" domainObjectName="BlogLog"
+		<!--<table tableName="blog_log" domainObjectName="BlogLog"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
@@ -71,7 +71,7 @@
 			   enableCountByExample="false" enableUpdateByExample="false"
 			   enableDeleteByExample="false" enableSelectByExample="false"
 			   selectByExampleQueryId="false">
-		</table>
+		</table>-->
 
 	</context>
 </generatorConfiguration>

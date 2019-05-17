@@ -2,6 +2,11 @@ package com.blog.myblog.entity;
 
 import java.util.Date;
 
+/**
+ * @description 用户表
+ * @author dongyang
+ * @date 2019/5/15
+ */
 public class BlogUser {
     private String userUuid;
 

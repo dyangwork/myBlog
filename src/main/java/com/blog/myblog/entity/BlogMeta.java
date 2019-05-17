@@ -1,5 +1,10 @@
 package com.blog.myblog.entity;
 
+/**
+ * @description  分类标签表
+ * @author dongyang
+ * @date 2019/5/15
+ */
 public class BlogMeta {
     private String cid;
 

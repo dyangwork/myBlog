@@ -13,24 +13,30 @@ public class Pagination implements  Serializable{
 
     private static final long serialVersionUID = 1L;
 
-    private Integer curPageNo;
+    /**
+     * 当前页
+     */
+    private Integer start;
 
-    private Integer pageSize;
+    /**
+     * 每页数据量
+     */
+    private Integer length;
 
-    public Integer getCurPageNo() {
-        return curPageNo;
+
+    public Integer getStart() {
+        return start;
     }
 
-    public void setCurPageNo(Integer curPageNo) {
-        this.curPageNo = curPageNo;
+    public void setStart(Integer start) {
+        this.start = start+1;
     }
 
-    public Integer getPageSize() {
-        return pageSize;
+    public Integer getLength() {
+        return length;
     }
 
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
+    public void setLength(Integer length) {
+        this.length = length;
     }
-
 }

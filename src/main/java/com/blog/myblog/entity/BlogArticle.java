@@ -16,7 +16,7 @@ public class BlogArticle {
     /**
      * 文章标题
      */
-    private String articleTile;
+    private String articleTitle;
 
     /**
      * 分类
@@ -28,11 +28,11 @@ public class BlogArticle {
      */
     private String tags;
 
-    private Integer slug;
+    private String slug;
 
     private String status;
 
-    private String thumbimg;
+    private String thumbImg;
 
     private String allowComments;
 
@@ -58,12 +58,12 @@ public class BlogArticle {
         this.articleId = articleId == null ? null : articleId.trim();
     }
 
-    public String getArticleTile() {
-        return articleTile;
+    public String getArticleTitle() {
+        return articleTitle;
     }
 
-    public void setArticleTile(String articleTile) {
-        this.articleTile = articleTile == null ? null : articleTile.trim();
+    public void setArticleTitle(String articleTitle) {
+        this.articleTitle = articleTitle == null ? null : articleTitle.trim();
     }
 
     public String getCategory() {
@@ -82,11 +82,11 @@ public class BlogArticle {
         this.tags = tags == null ? null : tags.trim();
     }
 
-    public Integer getSlug() {
+    public String getSlug() {
         return slug;
     }
 
-    public void setSlug(Integer slug) {
+    public void setSlug(String slug) {
         this.slug = slug;
     }
 
@@ -98,12 +98,12 @@ public class BlogArticle {
         this.status = status == null ? null : status.trim();
     }
 
-    public String getThumbimg() {
-        return thumbimg;
+    public String getThumbImg() {
+        return thumbImg;
     }
 
-    public void setThumbimg(String thumbimg) {
-        this.thumbimg = thumbimg == null ? null : thumbimg.trim();
+    public void setThumbImg(String thumbImg) {
+        this.thumbImg = thumbImg;
     }
 
     public String getAllowComments() {

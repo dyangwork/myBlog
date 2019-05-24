@@ -50,4 +50,11 @@ public interface BlogArticleMapper {
      * @param articleId
      */
     void deleteArticleById(@Param("articleId") String articleId);
+
+    /**
+     * 查询数据总条数
+     * @param vo
+     * @return
+     */
+    Integer queryCount(BlogArticleVO vo);
 }

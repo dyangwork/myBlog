@@ -2,6 +2,7 @@ package com.blog.myblog.service;
 
 import com.blog.myblog.entity.BlogArticle;
 import com.blog.myblog.vo.BlogArticleVO;
+import com.blog.myblog.vo.PaginationResult;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public interface ArticleService {
      * @param vo
      * @return
      */
-    List<BlogArticleVO> queryArticleList(BlogArticleVO vo);
+    PaginationResult<BlogArticleVO> queryArticleList(BlogArticleVO vo);
 
     /**
      * 根据文章id 更新文章

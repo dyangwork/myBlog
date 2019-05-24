@@ -4,6 +4,7 @@ import com.blog.myblog.dao.BlogArticleMapper;
 import com.blog.myblog.entity.BlogArticle;
 import com.blog.myblog.service.ArticleService;
 import com.blog.myblog.vo.BlogArticleVO;
+import com.blog.myblog.vo.PaginationResult;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,7 +29,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public int insertSelective(BlogArticle record) {
-        return 0;
+        return blogArticleMapper.insertSelective(record);
     }
 
     /**
@@ -49,8 +50,13 @@ public class ArticleServiceImpl implements ArticleService {
      * @return
      */
     @Override
-    public List<BlogArticleVO> queryArticleList(BlogArticleVO vo) {
-        return null;
+    public PaginationResult<BlogArticleVO> queryArticleList(BlogArticleVO vo) {
+        PaginationResult<BlogArticleVO> result = new PaginationResult<BlogArticleVO>();
+        List<BlogArticleVO> list = blogArticleMapper.queryArticleList(vo);
+        Integer count = blogArticleMapper.queryCount(vo);
+        result.setList(list);
+        result.setTotal(count);
+        return result;
     }
 
     /**

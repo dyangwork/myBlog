@@ -1,0 +1,34 @@
+server:
+  port: 8084
+ 
+spring:
+  profiles:
+    active: jdbc
+#自动编译工具
+  devtools:
+    restart:
+      #可以自动编译
+      enabled: true
+      additional-paths: src/main/java
+  #设置静态资源路径
+  #mvc:
+    #static-path-pattern: /static/**
+
+# thymeleaf mode engine
+  thymeleaf:
+    prefix: classpath:/templates/
+    check-template-location: true
+    mode: HTML
+    encoding: UTF-8
+    suffix: .html
+    cache: false
+
+# mybatis 分页插件 
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+
+      

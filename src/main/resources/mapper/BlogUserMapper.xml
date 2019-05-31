@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.myblog.dao.BlogUserMapper">
+  <resultMap id="BaseResultMap" type="com.blog.myblog.entity.BlogUser">
+    <result column="user_uuid" jdbcType="VARCHAR" property="userUuid" />
+    <result column="user_account" jdbcType="VARCHAR" property="userAccount" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="enable" jdbcType="CHAR" property="enable" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_pwd_time" jdbcType="TIMESTAMP" property="updatePwdTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+  </resultMap>
+  <insert id="insert" parameterType="com.blog.myblog.entity.BlogUser">
+    insert into blog_user (user_uuid, user_account, password, 
+      user_name, real_name, phone, 
+      email, sex, enable, create_time, 
+      update_time, update_pwd_time, create_user, 
+      update_user)
+    values (#{userUuid,jdbcType=VARCHAR}, #{userAccount,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{enable,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updatePwdTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blog.myblog.entity.BlogUser">
+    insert into blog_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userUuid != null">
+        user_uuid,
+      </if>
+      <if test="userAccount != null">
+        user_account,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="realName != null">
+        real_name,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="enable != null">
+        enable,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updatePwdTime != null">
+        update_pwd_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userUuid != null">
+        #{userUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userAccount != null">
+        #{userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePwdTime != null">
+        #{updatePwdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getUserByUserNameAndPassword" parameterType="java.util.Map" resultType="com.blog.myblog.entity.BlogUser">
+      select user_uuid as userUuid,user_account as userAccount,user_name as userName,real_name as realName,email,phone,sex from blog_user
+      where  user_account = #{userName} and  password = #{password} and enable = 'Y'
+  </select>
+
+  <select id="getUserById" parameterType="java.util.List" resultType="com.blog.myblog.entity.BlogUser">
+      select user_uuid,user_account,user_name,real_name,email,phone,sex from blog_user
+      <where>
+        <foreach collection="ids" index="1" item="id" separator="or">
+          user_uuid = #{id}
+        </foreach>
+      </where>
+      where user_uuid = #{userUuid} and enable='Y'
+  </select>
+
+  <sql id="updateParamsSql">
+      <if test="user_name != null">
+        user_name = #{userName}
+      </if>
+      <if test="realName !=null ">
+        real_name = #{realName}
+      </if>
+      <if test="email !=null ">
+        email = #{email}
+      </if>
+      <if test="phone !=null ">
+        phone = #{phone}
+      </if>
+      <if test="sex !=null ">
+        sex = #{sex}
+      </if>
+      <if test="enable !=null ">
+        enable = #{enable}
+      </if>
+      <if test="updateTime !=null ">
+        update_time = #{updateTime}
+      </if>
+      <if test="updatePwdTime !=null ">
+        update_pwd_time = #{updatePwdTime}
+      </if>
+      <if test="updateUser !=null ">
+        update_user = #{updateUser}
+      </if>
+  </sql>
+
+  <update id="updateUserById" parameterType="com.blog.myblog.entity.BlogUser">
+      update blog_user
+      <set>
+        <include refid="updateParamsSql"/>
+      </set>
+      where user_uuid = #{userUuid} and enable='Y'
+  </update>
+
+  <update id="updateUserByUserAccount" parameterType="com.blog.myblog.entity.BlogUser">
+    update blog_user set
+    <set>
+      <include refid="updateParamsSql" />
+    </set>
+    where user_account = #{userAccount} and enable='Y'
+  </update>
+
+
+</mapper>

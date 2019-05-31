@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.myblog.dao.BlogMetaMapper">
+	<resultMap id="BaseResultMap" type="com.blog.myblog.entity.BlogMeta">
+		<result column="cid" jdbcType="VARCHAR" property="cid" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="type" jdbcType="CHAR" property="type" />
+		<result column="description" jdbcType="VARCHAR" property="description" />
+		<result column="sort" jdbcType="INTEGER" property="sort" />
+		<result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+	</resultMap>
+	<insert id="insert" parameterType="com.blog.myblog.entity.BlogMeta">
+		insert into blog_metas (cid, name, type,
+		description, sort, parent_id
+		)
+		values (#{cid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+		#{type,jdbcType=CHAR},
+		#{description,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{parentId,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.blog.myblog.vo.BlogMetaVO">
+		insert into blog_metas
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cid != null">
+				cid,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
+			<if test="parentId != null">
+				parent_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="cid != null">
+				#{cid,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=CHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
+			</if>
+			<if test="parentId != null">
+				#{parentId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 批量添加分类/metas -->
+	<insert id="bacthAddMates" parameterType="java.util.List">
+		insert into blog_metas (cid, name, type, description, sort, parent_id)
+		values
+		<foreach collection="list" item="mate" separator="," open="(" close=")">
+			#{cid}, #{name},#{type},#{description}, #{sort}, #{parentId}
+		</foreach>
+	</insert>
+
+	<!-- 查询分类/标签列表 -->
+	<select id="queryCategoryListByType" parameterType="java.lang.String"
+		resultType="com.blog.myblog.vo.BlogMetaVO">
+		select bm.cid,bm.name,bm.type,bm.description,bm.sort,IFNUll(br.count,0) as count from
+		blog_metas bm left join
+		(select cid, count(1) as count from blog_article_metas_rel group by cid) br
+		on bm.cid = br.cid
+		<where>
+			bm.type = #{type}
+		</where>
+	</select>
+
+	<delete id="deleteCategoryById" parameterType="java.lang.String">
+		delete from blog_metas where cid=#{cid}
+	</delete>
+
+	<update id="updateCategoryById" parameterType="com.blog.myblog.vo.BlogMetaVO">
+		update blog_metas set name=#{name} where cid=#{cid}
+	</update>
+
+</mapper>

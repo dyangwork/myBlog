@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="common/header::headerFragment('博客后台管理')"></div>
+<!--css file-->
+<link rel="stylesheet" th:href="@{/common/mditor/css/mditor.css}"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+<link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script th:src="@{/common/mditor/js/mditor.js}"></script>
+<script th:src="@{/js/admin/article/article.js}"></script>
+
+<body>
+<div th:replace="common/home_body::home-body"></div>
+<div class="content-page">
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="page-title">文章管理</h4>
+                </div>
+                <div class="col-md-12">
+                    <div class="">
+                        <form class="form-inline col-sm-11" id="search_form">
+                            <div class="form-group col-md-4">
+	                            <label class="col-sm-4 control-label" for="articleTitle">文章标题</label>
+	                            <input class="col-sm-4 form-control" placeholder="名称或其他" name="articleTitle" id="articleTitle">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="col-sm-4 control-label" for="category">分类</label>
+                                <select class="col-sm-4 form-control" id="category" name="category">
+                                <option value="">--</option>
+                                    <option value=1>男</option>
+                                    <option value=0>女</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="col-sm-4 control-label" for="tags">标签</label>
+                                <input class="col-sm-4 form-control" placeholder="名称或其他" name="tags" id="tags">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="col-sm-4 control-label" for="status">状态</label>
+                                <select class="col-sm-4 form-control" id="status" name="status">
+                                <option value="">--</option>
+                                    <option value=1>发布</option>
+                                    <option value=0>草稿</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="col-sm-4 control-label" for="type">类型</label>
+                                <select class="col-sm-4 form-control" id="type" name="type">
+                                <option value="">--</option>
+                                    <option value=1>原创</option>
+                                    <option value=0>转载</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="col-sm-4 control-label" for="startTime">开始</label>
+                                <input type="text" class="col-sm-4 datepicker form-control" data-date-format="yyyy-mm-dd 00:00:00" name="startTime" id="startTime"/>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="col-sm-4 control-label" for="endTime">截止</label>
+                                <input type="text" class="col-sm-4 datepicker form-control" data-date-format="yyyy-mm-dd 23:59:59" name="endTime" id="endTime" />
+                            </div>
+                            <div class="pull-right">
+                                <button type="button" id="query" class="btn btn-success query mt-5">查询</button>
+                                <a th:href="@{/admin/article/new}" class="btn btn-success waves-effect waves-light m-b-5">添加新页面</a>
+                                <button type="button" id="batchDelete" class="btn btn-danger mt-5">批量删除</button>
+                            </div>
+                        </form>
+                    </div>
+                    <table class="table table-striped table-bordered" id="articleTab">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>标题</th>
+                            <th>分类</th>
+                            <th>标签</th>
+                            <th>文章状态</th>
+                            <th>文章类型</th>
+                            <th>是否评论</th>
+                            <th>附件</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='分类管理',active='category'">
+<header th:replace="common/header::headerFragment('博客后台管理')"></header>
+<body class="fixed-left">
+<div id="wrapper">
+    <div th:replace="common/home_body::home-body"></div>
+    <div class="content-page">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="page-title">分类/标签管理</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-color panel-primary">
+                            <div class="panel-heading">
+                                <h1 class="panel-title">分类列表</h1>
+                            </div>
+                            <div class="panel-body">
+                                <th:block th:each="category : ${categorys}">
+                                    <div class="btn-group m-b-10">
+                                        <th:block th:if="${category.name == '默认分类'}">
+                                            <button type="button"
+                                                    th:class="'btn btn-'+${adminCommons.nextColor()}+' waves-effect waves-light'">
+                                                <th:block th:text="${category.name}"/>
+                                                <th:block th:text="' ('+${category.count}+')'"/>
+                                            </button>
+                                        </th:block>
+                                        <th:block th:unless="${category.name == '默认分类'}">
+                                            <button type="button"
+                                                    th:class="'btn btn-'+${adminCommons.nextColor()}+' dropdown-toggle waves-effect waves-light'"
+                                                    data-toggle="dropdown" aria-expanded="false">
+                                                <th:block th:text="${category.name}"/>
+                                                <th:block th:text="' ('+${category.count}+')'"/>
+                                                <span
+                                                        class="caret"></span></button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="javascript:void(0)" th:attr="cid=${category.cid},cname=${category.name},cdescription=${category.description}"
+                                                       class="edit-category">修改</a>
+                                                </li>
+                                                <li><a href="javascript:void(0)" th:attr="cid=${category.cid}"
+                                                       class="del-category">删除</a></li>
+                                            </ul>
+                                        </th:block>
+                                    </div>
+                                </th:block>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="panel  panel-pink">
+                            <div class="panel-heading">
+                                <h1 class="panel-title">标签列表</h1>
+                            </div>
+                            <div class="panel-body">
+                                <th:block th:each="tag : ${tags}">
+                                    <div class="btn-group m-b-10">
+                                        <button type="button"
+                                                th:class="'btn btn-'+${adminCommons.nextColor()}+' dropdown-toggle waves-effect waves-light'"
+                                                data-toggle="dropdown" aria-expanded="false">
+                                            <th:block th:text="${tag.name}"/>
+                                            <th:block th:text="' ('+${tag.count}+')'"/>
+                                            <span
+                                                    class="caret"></span></button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="javascript:void(0)" th:attr="cid=${tag.cid}"
+                                                   class="del-category">删除</a></li>
+                                        </ul>
+                                    </div>
+                                </th:block>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <form id="cform" class="form-inline" role="form">
+                                    <input type="hidden" name="cid" id="cid"/>
+                                    <input type="hidden" name="description" id="description">
+                                    <input type="hidden" name="type" id="type" value="category">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="请输入分类名称"/>
+                                    </div>
+                                    <button id="save-category-btn" type="button"
+                                            class="btn btn-success waves-effect waves-light m-l-10">保存分类
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script th:src="@{/js/admin/category/category.js}" type="text/javascript"></script>
+</html>

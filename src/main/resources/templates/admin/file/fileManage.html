@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:with="title='文件管理',active='attach'">
+<header th:replace="common/header::headerFragment('博客后台管理')"></header>
+<link th:href="@{/common/dropzone/4.3.0/min/dropzone.min.css}" rel="stylesheet" />
+<link th:href="@{/css/admin/file/fileManage.css}" rel="stylesheet" />
+<body class="fixed-left">
+	<div id="wrapper">
+		<div th:replace="common/home_body::home-body"></div>
+		<div class="content-page">
+			<div class="content">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<h4 class="page-title">文件管理</h4>
+						</div>
+						<div class="row">
+							<div class="col-md-12 portlets">
+								<!-- Your awesome content goes here -->
+								<div class="m-b-30">
+									<form action="#" class="dropzone" id="dropzone">
+										<div class="fallback">
+											<input name="file" type="file" multiple="multiple" />
+										</div>
+										<div class="dz-message">将文件拖至此处或点击上传.</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12 attach">
+							<th:block th:if="${adminCommons.isNotEmpty(attachs)}">
+								<div class="row">
+									<div class="col-md-4 text-center">
+										<div class="alert alert-warning">目前还没有一个附件呢，你可以上传试试!</div>
+									</div>
+								</div>
+							</th:block>
+							<th:block th:unless="${adminCommons.isNotEmpty(attachs)}">
+								<th:block th:each="attach : ${attachs.list}">
+									<div class="col-md-2 text-center m-t-10">
+										<a th:href="${attach.filePath}" target="_blank">
+											<img class="attach-img"
+											th:src="@{${attach.fileSuffix == 'image'}?${attach.filePath}: '/admin/images/attach.png'}"
+											th:title="${attach.originName}" />
+										</a>
+										<div class="clearfix m-t-10">
+											<span class="attach-text" data-toggle="tooltip"
+												data-placement="top"
+												th:attr="data-original-title=${attach.originName}"
+												th:text="${attach.originName}"></span>
+										</div>
+										<div class="clearfix">
+											<button th:attr="url=${attach.filePath}"
+												type="button"
+												class="btn btn-warning btn-sm waves-effect waves-light m-t-5 copy">
+												<i class="fa fa-copy"></i> <span>复制</span>
+											</button>
+											<button type="button"
+												class="btn btn-danger btn-sm waves-effect waves-light m-t-5"
+												th:onclick="'delAttach('+${attach.fileId}+');'">
+												<i class="fa fa-trash-o"></i> <span>删除</span>
+											</button>
+										</div>
+									</div>
+								</th:block>
+								<div th:replace="common/macros :: pageAdminNav(${attachs})"></div>
+							</th:block>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script th:src="@{/common/dropzone/4.3.0/min/dropzone.min.js}"></script>
+	<script src="//cdn.bootcss.com/clipboard.js/1.6.0/clipboard.min.js"></script>
+	<script th:src="@{/js/admin/file/fileManage.js}"></script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.myblog.dao.BlogArticleMapper">
+  <resultMap id="BaseResultMap" type="com.blog.myblog.entity.BlogArticle">
+    <result column="article_id" jdbcType="VARCHAR" property="articleId" />
+    <result column="article_title" jdbcType="VARCHAR" property="articleTitle" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="tags" jdbcType="VARCHAR" property="tags" />
+    <result column="slug" jdbcType="VARCHAR" property="slug" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="thumbImg" jdbcType="VARCHAR" property="thumbImg" />
+    <result column="allow_comments" jdbcType="CHAR" property="allowComments" />
+    <result column="allow_imgs" jdbcType="CHAR" property="allowImgs" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.blog.myblog.entity.BlogArticle">
+    <result column="contents" jdbcType="LONGVARCHAR" property="contents" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    contents
+  </sql>
+  <insert id="insert" parameterType="com.blog.myblog.entity.BlogArticle">
+    insert into blog_article (article_id, article_title, category,
+      tags, slug, status, 
+      thumbImg, allow_comments, allow_imgs, 
+      type, create_time, update_time, 
+      create_user, update_user, contents
+      )
+    values (#{articleId,jdbcType=VARCHAR}, #{articleTitle,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR},
+      #{tags,jdbcType=VARCHAR}, #{slug,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+      #{thumbimg,jdbcType=VARCHAR}, #{allowComments,jdbcType=CHAR}, #{allowImgs,jdbcType=CHAR}, 
+      #{type,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{contents,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blog.myblog.entity.BlogArticle">
+    insert into blog_article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="articleId != null">
+        article_id,
+      </if>
+      <if test="articleTitle != null">
+        article_title,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="tags != null">
+        tags,
+      </if>
+      <if test="slug != null">
+        slug,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="thumbImg != null">
+        thumbImg,
+      </if>
+      <if test="allowComments != null">
+        allow_comments,
+      </if>
+      <if test="allowImgs != null">
+        allow_imgs,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="contents != null">
+        contents,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="articleId != null">
+        #{articleId,jdbcType=VARCHAR},
+      </if>
+      <if test="articleTitle != null">
+        #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null">
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="slug != null">
+        #{slug,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbImg != null">
+        #{thumbImg,jdbcType=VARCHAR},
+      </if>
+      <if test="allowComments != null">
+        #{allowComments,jdbcType=CHAR},
+      </if>
+      <if test="allowImgs != null">
+        #{allowImgs,jdbcType=CHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null">
+        #{contents,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <!-- 根据id 查询文章-->
+  <select id="queryArticleById" parameterType="string" resultType="com.blog.myblog.vo.BlogArticleVO">
+    select article_id as articleId,article_title articleTitle,category,tags,slug,contents,status,thumbImg,allow_comments as allowComments,
+    allow_imgs as allowImgs,create_time as createTime,update_time as updateTime,create_user as createUser
+    from blog_article where article_id = #{articleId}
+  </select>
+
+  <!--查询sql-->
+  <sql id="queryCondition">
+    <if test="articleTitle !=null and articleTitle !=''">
+      article_title like concat("%",#{articleTitle},"%")
+    </if>
+    <if test="category !=null and category !=''">
+      <foreach collection="category" item="item" separator="and"  close="">
+        category like concat("%",#{item},"%")
+      </foreach>
+    </if>
+    <if test="tags !=null and tags !=''">
+      tags = #{tags}
+    </if>
+    <if test="type !=null and type !=''">
+      slug = #{type}
+    </if>
+    <if test="status !=null and status !=''">
+      status = #{status}
+    </if>
+    <if test="startTime !=null and startTime!=''">
+        <![CDATA[
+          create_time >= to_date(#{startTime,jdbcType=TIMESTAMP},'yyyy-MM-dd hh24:mi:ss')
+        ]]>
+    </if>
+    <if test="endTime !=null and endTime !=''">
+      <![CDATA[
+        create_time <= to_date(#{startTime,jdbcType=TIMESTAMP},'yyyy-MM-dd hh24:mi:ss')
+      ]]>
+    </if>
+  </sql>
+
+  <select id="queryCount" parameterType="com.blog.myblog.vo.BlogArticleVO" resultType="integer">
+    select count(1) from blog_article
+    <where>
+      <include refid="queryCondition"></include>
+    </where>
+  </select>
+
+  <!--条件查询文章列表-->
+  <select id="queryArticleList" parameterType="com.blog.myblog.vo.BlogArticleVO" resultType="com.blog.myblog.vo.BlogArticleVO">
+    select article_id as articleId,article_title articleTitle,category,tags,slug,contents,status,thumbImg,allow_comments as allowComments,
+    allow_imgs as allowImgs,create_time as createTime,update_time as updateTime,create_user as createUser
+    from blog_article
+    <where>
+        <include refid="queryCondition"></include>
+    </where>
+    limit ${(start-1)*length},${length}
+  </select>
+  <sql id="updateSql">
+    <if test="articleTitle!=null">
+      article_title =#{articleTitle}
+    </if>
+    <if test="category!=null">
+      category=#{category}
+    </if>
+    <if test="tags!=null">
+      tags=#{tags}
+    </if>
+    <if test="slug!=null">
+      slug=#{slug}
+    </if>
+    <if test="contents!=null">
+      contents=#{contents}
+    </if>
+    <if test="status!=null">
+      status=#{status}
+    </if>
+    <if test="thumbImg!=null">
+      thumbImg=#{thumbImg}
+    </if>
+    <if test="allowComments!=null">
+      allow_comments=#{allowComments}
+    </if>
+    <if test="allowImgs!=null">
+      allow_imgs=#{allowImgs}
+    </if>
+    <if test="updateTime!=null">
+      update_time=#{updateTime}
+    </if>
+    <if test="updateUser!=null">
+      update_user=#{updateUser}
+    </if>
+  </sql>
+
+  <update id="updateArticleById" parameterType="com.blog.myblog.vo.BlogArticleVO">
+      update blog_article
+      <set>
+          <include refid="updateSql"></include>
+      </set>
+      where article_id=#{articleId}
+  </update>
+  <!-- 删除文章 -->
+  <delete id="deleteArticleById" parameterType="string">
+    delete from blog_article where article_id=#{articleId}
+  </delete>
+
+</mapper>

@@ -1,6 +1,7 @@
 package com.blog.myblog.vo;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author dongyang

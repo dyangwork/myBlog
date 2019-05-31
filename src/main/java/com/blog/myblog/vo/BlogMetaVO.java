@@ -85,6 +85,4 @@ public class BlogMetaVO{
 	public void setSort(int sort) {
 		this.sort = sort;
 	}
-	
-
 }

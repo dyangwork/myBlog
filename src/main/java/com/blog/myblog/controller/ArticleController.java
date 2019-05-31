@@ -78,16 +78,6 @@ public class ArticleController {
     @ResponseBody
     public ProcessResult<?>  queryArticleList(HttpServletRequest request,BlogArticleVO articleVO){
         PaginationResult<BlogArticleVO> paginationResult = null;
-
-       Enumeration<String> entry =  request.getParameterNames();
-        while(entry.hasMoreElements()){
-            String paramName = entry.nextElement();
-            String[] values =  request.getParameterValues(paramName);
-            for(int  i=0;i<values.length;i++){
-                System.out.println("["+i+"]   "+paramName+"  "+values[i]);
-            }
-
-        }
         try{
             paginationResult =  articleService.queryArticleList(articleVO);
             return ProcessResult.success("查询成功",paginationResult);

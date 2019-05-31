@@ -8,8 +8,8 @@ import java.util.Date;
  * @date 2019/5/15
  */
 public class BlogFile {
-	
-    private String fileId;
+
+	private String fileId;
 
     private String fileName;
 

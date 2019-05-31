@@ -48,7 +48,6 @@ public class LoginController {
 	@PostMapping("/login")
 	@ResponseBody
 	public ProcessResult<?> login(HttpServletRequest request, HttpServletResponse response){
-
 		//获取用户名密码
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");

@@ -51,19 +51,34 @@
                            th:class="${active}=='article'?'waves-effect active':'waves-effect'"><i
                                 class="fa fa-list" aria-hidden="true"></i><span> 文章管理 </span></a>
                     </li>
+<<<<<<< HEAD
             
+=======
+                    <li th:class="${active}=='page'?'active':''">
+                        <a th:href="@{/admin/page}" th:class="${active}=='page'?'waves-effect active':'waves-effect'"><i
+                                class="fa fa-file-text" aria-hidden="true"></i><span> 页面管理 </span></a>
+                    </li>
+>>>>>>> b474ed02152f141f47166ab30c1624b8a96800c1
                     <li th:class="${active}=='comments'?'active':''">
                         <a th:href="@{/admin/comments}"
                            th:class="${active}=='comments'?'waves-effect active':'waves-effect'"><i
                                 class="fa fa-comments" aria-hidden="true"></i><span> 评论管理 </span></a>
                     </li>
                     <li th:class="${active}=='category'?'active':''">
+<<<<<<< HEAD
                         <a th:href="@{/admin/metas}"
+=======
+                        <a th:href="@{/admin/category}"
+>>>>>>> b474ed02152f141f47166ab30c1624b8a96800c1
                            th:class="${active}=='category'?'waves-effect active':'waves-effect'"><i
                                 class="fa fa-tags" aria-hidden="true"></i><span> 分类/标签 </span></a>
                     </li>
                     <li th:class="${active}=='attach'?'active':''">
+<<<<<<< HEAD
                         <a th:href="@{/admin/file}"
+=======
+                        <a th:href="@{/admin/attach}"
+>>>>>>> b474ed02152f141f47166ab30c1624b8a96800c1
                            th:class="${active}=='attach'?'waves-effect active':'waves-effect'"><i
                                 class="fa fa-cloud-upload" aria-hidden="true"></i><span> 文件管理 </span></a>
                     </li>

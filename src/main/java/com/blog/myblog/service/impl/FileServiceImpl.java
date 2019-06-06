@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.blog.myblog.dao.BlogFileMapper;
 import com.blog.myblog.entity.BlogFile;
@@ -39,6 +40,7 @@ public class FileServiceImpl implements FileService{
 	  * @returnType int 
 	  * @throw
 	 */
+	@Transactional(rollbackFor=Exception.class)
 	@Override
 	public void insert(BlogFile record) throws Exception{
 		blogFileMapper.insert(record);
@@ -51,6 +53,7 @@ public class FileServiceImpl implements FileService{
 	  * @returnType int 
 	  * @throw
 	 */
+	@Transactional(rollbackFor=Exception.class)
 	@Override
 	public void insertSelective(BlogFile record)  throws Exception{
 		blogFileMapper.insertSelective(record);
@@ -109,6 +112,7 @@ public class FileServiceImpl implements FileService{
 	  * @returnType int 
 	  * @throw
 	 */
+	@Transactional(rollbackFor=Exception.class)
 	@Override
 	public void deleteFileById(String fileId)  throws Exception{
 		blogFileMapper.deleteFileById(fileId);
@@ -121,6 +125,7 @@ public class FileServiceImpl implements FileService{
 	  * @returnType void 
 	  * @throw
 	 */
+	@Transactional(rollbackFor=Exception.class)
 	@Override
 	public void batchSaveFiles(List<BlogFileVO> blogFileList) {
 		blogFileMapper.batchAddFile(blogFileList);

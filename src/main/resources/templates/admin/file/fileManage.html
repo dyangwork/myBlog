@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	th:with="title='文件管理',active='attach'">
 <header th:replace="common/header::headerFragment('博客后台管理')"></header>
-<link th:href="@{/common/dropzone/4.3.0/min/dropzone.min.css}" rel="stylesheet" />
+<!-- <link th:href="@{/common/dropzone/4.3.0/min/dropzone.min.css}" rel="stylesheet" /> -->
+<link th:href="@{/common/fileInput/fileinput.min.css}" rel="stylesheet" />
 <link th:href="@{/css/admin/file/fileManage.css}" rel="stylesheet" />
 <body class="fixed-left">
 	<div id="wrapper">
@@ -20,27 +21,26 @@
 								<div class="m-b-30">
 									<form action="#" class="dropzone" id="dropzone">
 										<div class="fallback">
-											<input name="file" type="file" multiple="multiple" />
+											<input id="fileupload" name="file" type="file" multiple data-show-caption="true" />
 										</div>
-										<div class="dz-message">将文件拖至此处或点击上传.</div>
 									</form>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-12 attach">
-							<th:block th:if="${adminCommons.isNotEmpty(attachs)}">
+							<th:block th:if="${adminCommons.isEmpty(attachs)}">
 								<div class="row">
 									<div class="col-md-4 text-center">
 										<div class="alert alert-warning">目前还没有一个附件呢，你可以上传试试!</div>
 									</div>
 								</div>
 							</th:block>
-							<th:block th:unless="${adminCommons.isNotEmpty(attachs)}">
+							<th:block th:unless="${adminCommons.isEmpty(attachs)}">
 								<th:block th:each="attach : ${attachs.list}">
 									<div class="col-md-2 text-center m-t-10">
 										<a th:href="${attach.filePath}" target="_blank">
 											<img class="attach-img"
-											th:src="@{${attach.fileSuffix == 'image'}?${attach.filePath}: '/admin/images/attach.png'}"
+											th:src="${adminCommons.isImage(attach.fileSuffix)}?${attach.filePath}: '/images/attach.png'"
 											th:title="${attach.originName}" />
 										</a>
 										<div class="clearfix m-t-10">
@@ -55,9 +55,8 @@
 												class="btn btn-warning btn-sm waves-effect waves-light m-t-5 copy">
 												<i class="fa fa-copy"></i> <span>复制</span>
 											</button>
-											<button type="button"
-												class="btn btn-danger btn-sm waves-effect waves-light m-t-5"
-												th:onclick="'delAttach('+${attach.fileId}+');'">
+											<button type="button" th:attr="name=${attach.fileId}"
+												class="btn btn-danger btn-sm waves-effect waves-light m-t-5 fa-delete">
 												<i class="fa fa-trash-o"></i> <span>删除</span>
 											</button>
 										</div>
@@ -71,7 +70,8 @@
 			</div>
 		</div>
 	</div>
-	<script th:src="@{/common/dropzone/4.3.0/min/dropzone.min.js}"></script>
+	<!-- <script th:src="@{/common/dropzone/4.3.0/min/dropzone.min.js}"></script> -->
+	<script th:src="@{/common/fileInput/fileinput.min.js}"></script>
 	<script src="//cdn.bootcss.com/clipboard.js/1.6.0/clipboard.min.js"></script>
 	<script th:src="@{/js/admin/file/fileManage.js}"></script>
 </body>

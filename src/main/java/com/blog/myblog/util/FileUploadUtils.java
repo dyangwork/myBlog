@@ -8,11 +8,15 @@
 package com.blog.myblog.util;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -24,35 +28,89 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public class FileUploadUtils {
 
+	public static Logger logger = LoggerFactory.getLogger("FileUploadUtils");
+
 	private static final String PATH = "D:\\www";
 
-	public static String uploadFile(MultipartFile mutiFile) throws IOException{
-		
+	/**
+	 * @description 文件上传
+	 * @methodName uploadFile
+	 * @param
+	 * @returnType String
+	 * @throw
+	 */
+	public static String uploadFile(MultipartFile mutiFile, String newFileName) {
+
 		String dir = DateUtils.dateToString(new Date(), "yyyy-MM-dd");
-		String originName = mutiFile.getOriginalFilename();
-		String type = originName.split(".")[1];
-		String newFileName = UUIDUtils.nextUUID()+"."+type;
-		String path = PATH +"\\upload\\"+dir+"\\"+newFileName; 
-		
+		String commonPath = "\\upload\\" + dir;
+		String path = commonPath + "\\" + newFileName;
+
 		InputStream in = null;
 		FileOutputStream out = null;
-		in = mutiFile.getInputStream();
-		
+		try {
+			in = mutiFile.getInputStream();
+			File file = new File(PATH + commonPath);
+			if (!file.exists()) {
+				file.mkdirs();
+			}
+			file = new File(PATH + path);
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			out = new FileOutputStream(file);
+			int byteReader = -1;
+			byte[] buffer = new byte[4096];
+			while ((byteReader = in.read(buffer)) != -1) {
+				out.write(buffer, 0, byteReader);
+			}
+			out.flush();
+		} catch (FileNotFoundException e) {
+			logger.error("file not found:", e);
+			path = null;
+		} catch (IOException e) {
+			logger.error("文件上传error:", e);
+			path = null;
+		} finally {
+			ioClose(in, out);
+		}
+		return path;
+	}
+
+	/**
+	 * @description 删除文件
+	 * @methodName deleteFile
+	 * @param
+	 * @returnType void
+	 * @throw
+	 */
+	public static void deleteFile(String path) {
+		path = PATH + path;
 		File file = new File(path);
-		if(!file.exists()){
-			file.createNewFile();
+		if (file.exists()) {
+			file.delete();
 		}
-		out = new FileOutputStream(file);
-		int byteCount = 0;
-		int byteReader = -1;
-		
-		byte[] buffer = new byte[4096];
-		while((byteReader = in.read(buffer))!=-1){
-			out.write(buffer,0,byteReader);
-			byteCount += byteReader;
+	}
+
+	/**
+	 * @description 关闭流
+	 * @methodName ioClose
+	 * @param in
+	 * @param out
+	 * @returnType void
+	 * @throw
+	 */
+	public static void ioClose(InputStream in, OutputStream out) {
+		try {
+			in.close();
+		} catch (IOException e) {
+			logger.error("inputStream close error:", e);
 		}
-		out.flush();
-		return newFileName;
+		try {
+			out.close();
+		} catch (IOException e) {
+			logger.error("outputStream close error:", e);
+		}
+
 	}
 
 }

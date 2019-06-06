@@ -22,16 +22,11 @@ spring:
     encoding: UTF-8
     suffix: .html
     cache: false
-
-<<<<<<< HEAD
 # mybatis 分页插件 
 pagehelper:
   helper-dialect: mysql
   reasonable: true
   support-methods-arguments: true
   params: count=countSql
-
-=======
->>>>>>> b474ed02152f141f47166ab30c1624b8a96800c1
 
       

@@ -7,27 +7,17 @@ function querytables(){
         paging:true, //分页默认为true
         //searching:false, //开启搜索，默认禁止
         //ordering:false, //开启排序，默认禁止
-<<<<<<< HEAD
         serverSide: true,//开启服务端搜索，关闭的话，许多参数都没有了
         lengthMenu:[8,16,24,50],//分页下拉框
         jQueryUI:true,
         dom:"rtilp",
         //processing: true,//载入数据的时候是否显示“载入中”
         pageLength: 8,//首次加载的数据条数
-=======
-        //serverSide: true,
-        processing: true,//载入数据的时候是否显示“载入中”
-        length: 8,//首次加载的数据条数
->>>>>>> b474ed02152f141f47166ab30c1624b8a96800c1
         autowidth:true, //自适应宽度
         ajax: {
             url: '/admin/article/queryArticleList',
             type:"post",
-<<<<<<< HEAD
-            //data:getParam(),
-=======
             data:getParam(),
->>>>>>> b474ed02152f141f47166ab30c1624b8a96800c1
             dataFilter: function(data){
                 var jsonData = jQuery.parseJSON( data );
                 var result ={};
@@ -42,12 +32,8 @@ function querytables(){
             }
         },
         language : {
-<<<<<<< HEAD
         	lengthMenu :"每页显示_MENU_条",
             processing : "载入中....",//处理页面数据的时候的显示
-=======
-            processing : "载入中",//处理页面数据的时候的显示
->>>>>>> b474ed02152f141f47166ab30c1624b8a96800c1
             paginate : {//分页的样式文本内容。
                 previous : "上一页",
                 next : "下一页",
@@ -64,17 +50,10 @@ function querytables(){
             {data:"num",render:function(data,type,row,meta){
                 return meta.row+1;
             }},
-<<<<<<< HEAD
             {data:"articleTitle"},
             {data:"category"},
             {data:"tags"},
             {data:"status"},
-=======
-            {data:"articleTitle",searchable:true},
-            {data:"category",searchable:true},
-            {data:"tags",searchable:true},
-            {data:"status",searchable:true},
->>>>>>> b474ed02152f141f47166ab30c1624b8a96800c1
             {data:"type"},
             {data:"allowComments",render:function(data, type, row){
                 if(row.allowComments=="Y"){
@@ -90,19 +69,11 @@ function querytables(){
                     return "否";
                 }
             }},
-<<<<<<< HEAD
             {data:"createTime",render:function(data, type, row){
             	return row.createTime;
             }},
             {data:"operation",render:function(data, type, row){
             	
-=======
-            {data:"createTime",searchable:true,render:function(data, type, row){
-
-            }},
-            {data:"operation",render:function(data, type, row){
-
->>>>>>> b474ed02152f141f47166ab30c1624b8a96800c1
             }}
         ]
 

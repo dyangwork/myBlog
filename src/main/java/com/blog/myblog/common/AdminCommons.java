@@ -7,6 +7,8 @@
   */ 
 package com.blog.myblog.common;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.lang3.StringUtils;
@@ -30,6 +32,8 @@ public class AdminCommons {
 	 * 颜色列表
 	 */
 	private static final String[] COLORS={"jantent", "primary", "success", "info", "warning", "danger", "inverse", "purple", "pink"};
+	
+	private static final String[] IMAGES_TYPE = {"jpg","jepg","png","gif","webp","pcx","tif"};
 	
 	/**
 	 * 随机数
@@ -75,14 +79,27 @@ public class AdminCommons {
 	  * @returnType boolean 
 	  * @throw
 	 */
-	public static <T> boolean isNotEmpty(PageInfo<T> pageInfo){
+	public static <T> boolean isEmpty(PageInfo<T> pageInfo){
 		if(pageInfo ==null || CollectionUtils.isEmpty(pageInfo.getList())){
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
-		
+	/**
+	  * @description 判断是否为图片 
+	  * @methodName isImage 
+	  * @param type
+	  * @returnType boolean 
+	  * @throw
+	 */
+	public static boolean isImage(String type){
+		List<String> imageList = Arrays.asList(IMAGES_TYPE);
+		if(imageList.contains(type)){
+			return true;
+		}
+		return false;
+	}
 }
 
 	
